@@ -1,8 +1,8 @@
 package com.jpacourse.service;
 
-import com.jpacourse.dto.AddressTO;
+import com.jpacourse.dto.AddressDto;
 
 public interface AddressService
 {
-    public AddressTO findById(final Long id);
+    public AddressDto findById(final Long id);
 }

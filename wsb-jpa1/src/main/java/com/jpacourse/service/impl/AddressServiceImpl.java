@@ -1,6 +1,6 @@
 package com.jpacourse.service.impl;
 
-import com.jpacourse.dto.AddressTO;
+import com.jpacourse.dto.AddressDto;
 import com.jpacourse.mapper.AddressMapper;
 import com.jpacourse.persistence.dao.AddressDao;
 import com.jpacourse.persistence.entity.AddressEntity;
@@ -23,7 +23,7 @@ public class AddressServiceImpl implements AddressService
     }
 
     @Override
-    public AddressTO findById(Long id) {
+    public AddressDto findById(Long id) {
         final AddressEntity entity = addressDao.findOne(id);
         return AddressMapper.mapToTO(entity);
     }
