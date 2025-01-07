@@ -2,7 +2,6 @@ package com.jpacourse.persistance.dao;
 
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.dao.VisitDao;
-import com.jpacourse.persistence.entity.AddressEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
