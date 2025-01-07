@@ -38,13 +38,15 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
-	@JoinColumn(nullable = false)
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "ADDRESS_ID", nullable = false)
+	@OneToOne(cascade = CascadeType.ALL)
 	private AddressEntity address; // jednostronna od strony rodzica
 
-	@JoinColumn(nullable = false)
-	@OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
 	private List<VisitEntity> visits; // dwustronna od strony dziecka
+
+	@Column(nullable = false)
+	private LocalDate registrationDate;
 
 	public Long getId() {
 		return id;
@@ -116,5 +118,13 @@ public class PatientEntity {
 
 	public void setAddress(AddressEntity address) {
 		this.address = address;
+	}
+
+	public LocalDate getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(LocalDate registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 }

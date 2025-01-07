@@ -34,9 +34,9 @@ public class VisitEntity {
 	@ManyToOne
 	private PatientEntity patient; // dwustronna
 
-	@Column(nullable = false)
-	@OneToMany(mappedBy = "visit", cascade = CascadeType.REMOVE)
-	private List<MedicalTreatmentEntity> treatments; // dwustronna
+	@JoinColumn(name = "VISIT_ID",nullable = false)
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<MedicalTreatmentEntity> treatments; // jednostronna
 
 	public Long getId() {
 		return id;
