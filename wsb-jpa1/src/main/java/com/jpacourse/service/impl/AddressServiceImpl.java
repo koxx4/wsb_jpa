@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class AddressServiceImpl implements AddressService
+class AddressServiceImpl implements AddressService
 {
     private final AddressDao addressDao;
 
     @Autowired
-    public AddressServiceImpl(AddressDao pAddressDao)
+    public AddressServiceImpl(AddressDao addressDao)
     {
-        addressDao = pAddressDao;
+        this.addressDao = addressDao;
     }
 
     @Override

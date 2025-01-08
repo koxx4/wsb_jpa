@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static java.util.Optional.ofNullable;
 
 @Repository
-public class PersistentPatientDao extends AbstractDao<PatientEntity, Long> implements PatientDao
+class PersistentPatientDao extends AbstractDao<PatientEntity, Long> implements PatientDao
 {
     private final DoctorDao doctorDao;
 
@@ -36,6 +37,27 @@ public class PersistentPatientDao extends AbstractDao<PatientEntity, Long> imple
         newVisit.setDescription(description);
 
         patient.getVisits().add(newVisit);
-        save(patient);
+        update(patient);
+    }
+
+    @Override
+    public List<PatientEntity> findByLastName(String lastName) {
+        return entityManager.createQuery("SELECT p FROM PatientEntity p WHERE p.lastName = :lastName", getDomainClass())
+                .setParameter("lastName", lastName)
+                .getResultList();
+    }
+
+    @Override
+    public List<PatientEntity> findHavingMoreThanVisits(int visitsCount) {
+        return entityManager.createQuery("SELECT p FROM PatientEntity p WHERE SIZE(p.visits) > :visitsCount", getDomainClass())
+                .setParameter("visitsCount", visitsCount)
+                .getResultList();
+    }
+
+    @Override
+    public List<PatientEntity> findPatientsBeforeYear(int year) {
+        return entityManager.createQuery("SELECT p FROM PatientEntity p WHERE YEAR(p.dateOfBirth) < :year", getDomainClass())
+                .setParameter("year", year)
+                .getResultList();
     }
 }

@@ -14,7 +14,7 @@ import static java.time.LocalDateTime.now;
 
 
 @Service
-public class PatientServiceImpl implements PatientService
+class PatientServiceImpl implements PatientService
 {
     private final PatientDao patientDao;
     private final PatientMapper patientMapper;

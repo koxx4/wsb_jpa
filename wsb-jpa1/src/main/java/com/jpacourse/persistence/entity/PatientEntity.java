@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -47,6 +48,9 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private LocalDate registrationDate;
+
+	@Version
+	private Long version;
 
 	public Long getId() {
 		return id;
@@ -126,5 +130,13 @@ public class PatientEntity {
 
 	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Long getVersion() {
+		return version;
 	}
 }
